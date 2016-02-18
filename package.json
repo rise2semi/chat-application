@@ -1,0 +1,41 @@
+{
+  "name": "chat-application",
+  "version": "0.0.1",
+  "description": "Chat application with socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rise2semi/chat-application.git"
+  },
+  "author": "Borys Semerenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rise2semi/chat-application/issues"
+  },
+  "homepage": "https://github.com/rise2semi/chat-application#readme",
+  "devDependencies": {
+    "angular-mocks": "^1.5.0",
+    "browser-sync": "^2.11.1",
+    "browserify": "^13.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-ng-html2js": "^0.2.2",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sequence": "^0.4.5",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-browserify": "^5.0.1",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-ui-router": "^0.2.18",
+    "socket.io-client": "^1.4.5"
+  }
+}
