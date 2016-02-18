@@ -1,0 +1,8 @@
+.idea/
+node_modules/
+
+/* buld folder */
+build/
+
+/* Generated file with all angulat templates */
+src/scripts/templates/templates.js
