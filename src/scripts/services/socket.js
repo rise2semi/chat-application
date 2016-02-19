@@ -2,7 +2,6 @@ function SocketService( CONST, $rootScope, io ) {
     this.$rootScope = $rootScope;
     this.socket = io( CONST.server );
 
-    console.log( io( CONST.server ) );
     this.socket.on('appError', this.onError.bind( this ) );
     this.socket.on('setup', this.onSetup.bind( this ) );
 
@@ -22,7 +21,11 @@ function SocketService( CONST, $rootScope, io ) {
 }
 
 SocketService.prototype.onError = function ( event, data ) { console.log( event, data ); };
-SocketService.prototype.onSetup = function () { console.log( arguments ); };
+
+SocketService.prototype.onSetup = function ( chatState ) {
+    this.$rootScope.$emit('setup', chatState );
+};
+
 SocketService.prototype.onRoomCreated = function () {};
 SocketService.prototype.onRoomUpdated = function () {};
 SocketService.prototype.onRoomRemoved = function () {};
