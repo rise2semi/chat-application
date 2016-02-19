@@ -1,5 +1,11 @@
-function HeaderController() {
-
+function HeaderController( authService, $state ) {
+    this.authService = authService;
+    this.$state = $state;
 }
 
-module.exports = HeaderController;
+HeaderController.prototype.logout = function () {
+    this.authService.removeUser();
+    this.$state.go('login');
+};
+
+module.exports = ['authService', '$state', HeaderController ];

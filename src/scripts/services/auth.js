@@ -10,6 +10,10 @@ AuthService.prototype.getUser = function () {
     this.localStorage.getItem('user');
 };
 
+AuthService.prototype.removeUser = function () {
+    this.localStorage.removeItem('user');
+};
+
 AuthService.prototype.isLoggedIn = function () {
     return !!this.localStorage.getItem('user');
 };

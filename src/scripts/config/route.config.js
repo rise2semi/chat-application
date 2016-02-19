@@ -6,11 +6,16 @@ var MessagesListController = require('../controllers/messages-list');
 var RoomsListController = require('../controllers/rooms-list');
 
 module.exports = ['$urlRouterProvider', '$stateProvider', function ( $urlRouterProvider, $stateProvider ) {
-    $urlRouterProvider.otherwise('/chat');
+    $urlRouterProvider.otherwise('/chat/');
 
     $stateProvider
         .state('chat', {
-            url: '/chat',
+            url: '/chat/:name',
+            resolve: {
+                chatURL: ['$stateParams', function ( $stateParams ) {
+                    return $stateParams.name;
+                }]
+            },
             views: {
                 '': {
                     templateUrl: 'templates/chat.html',

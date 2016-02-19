@@ -1,0 +1,30 @@
+header
+  display: table
+  height: 50px
+  width: 100%
+  background-color: grey
+
+.logo-container
+  display: table-cell
+  vertical-align: middle
+  text-align: center
+  width: 100%
+  font-size: 2rem
+
+  .logo
+    position: relative
+
+    &:before
+      position: absolute
+      content: ''
+      right: 45px
+      top: 6px
+      width: 10px
+      height: 10px
+      border-radius: 10px
+      background: yellow
+
+.logout-container
+  display: table-cell
+  vertical-align: middle
+  padding-right: 20px
