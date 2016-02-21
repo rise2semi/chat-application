@@ -1,0 +1,30 @@
+=background-gradient()
+  background: $background-color
+  background: -moz-linear-gradient(top, $background-color-light 70%, $background-color 100%)
+  background: -webkit-linear-gradient(top, $background-color-light 70%, $background-color 100%)
+  background: linear-gradient(to bottom, $background-color-light 70%, $background-color 100%)
+
+=arrow-right()
+  left: 100%
+  top: 50%
+  position: absolute
+  content: ''
+  margin-top: -5px
+  height: 0
+  width: 0
+  border-style: solid
+  border-width: 5px 0 5px 10px
+  border-color: transparent transparent transparent $background-color-light
+
+=arrow-left()
+  right: 100%
+  top: 50%
+  position: absolute
+  content: ''
+  margin-top: -5px
+  width: 0
+  height: 0
+  border-style: solid
+  border-width: 5px 10px 5px 0
+  border-color: transparent $overlay-color-light transparent transparent
+

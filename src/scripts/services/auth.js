@@ -7,7 +7,7 @@ AuthService.prototype.saveUser = function ( user ) {
 };
 
 AuthService.prototype.getUser = function () {
-    this.localStorage.getItem('user');
+    return this.localStorage.getItem('user');
 };
 
 AuthService.prototype.removeUser = function () {

@@ -1,4 +1,4 @@
-function authConfig( $rootScope, $state, authService ) {
+function authConfig( $rootScope, $state, authService, loginService ) {
 
     /**
      * Stop the current state transition and redirect to the specified state
@@ -8,6 +8,13 @@ function authConfig( $rootScope, $state, authService ) {
     function changeState( event, state ) {
         event.preventDefault();
         $state.go( state );
+    }
+
+    /**
+     * Login user on the server automatically if he is logged in on the client
+     */
+    if ( authService.isLoggedIn() && !loginService.isSetup ) {
+        loginService.login( authService.getUser() );
     }
 
     $rootScope.$on('$stateChangeStart', function ( event, toState ) {
@@ -36,4 +43,4 @@ function authConfig( $rootScope, $state, authService ) {
     });
 }
 
-module.exports = ['$rootScope', '$state', 'authService', authConfig ];
+module.exports = ['$rootScope', '$state', 'authService', 'loginService', authConfig ];

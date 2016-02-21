@@ -1,8 +1,12 @@
 header
-  display: table
+  display: table-row
   height: 50px
   width: 100%
-  background-color: grey
+  background-color: $background-color
+
+.sidebar-icon
+  display: table-cell
+  vertical-align: middle
 
 .logo-container
   display: table-cell
@@ -13,18 +17,29 @@ header
 
   .logo
     position: relative
+    font-size: 2.2rem
+    font-weight: 600
 
     &:before
       position: absolute
       content: ''
-      right: 45px
-      top: 6px
-      width: 10px
-      height: 10px
-      border-radius: 10px
-      background: yellow
+      right: 60px
+      top: 8px
+      width: 12px
+      height: 12px
+      border-radius: 50%
+      background: #9ACD32
 
 .logout-container
   display: table-cell
   vertical-align: middle
   padding-right: 20px
+  text-align: right
+
+.fa
+  display: none
+
+  @media (max-width: $small-screen)
+    display: inline-block
+    font-size: 1.6rem
+    padding: 10px

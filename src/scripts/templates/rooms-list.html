@@ -1,0 +1,27 @@
+<h2>Rooms</h2>
+<ul class="rooms-list">
+    <li ng-repeat="room in rooms.list track by $index">
+        <a ng-if="!room.isEditMode"
+           ng-class="{ active: ( room.name === rooms.currentRoom.name ) }"
+           ng-click="rooms.changeRoom( room )" href="#">
+            {{ room.name }}
+        </a>
+        <form ng-submit="rooms.editRoom( rooms.editedRoom )" ng-if="room.isEditMode">
+            <input type="text" ng-model="rooms.editedRoom.name">
+            <div ng-if="rooms.errors.edit" class="error">{{ rooms.errors.edit }}</div>
+        </form>
+        <i class="fa fa-trash"
+           ng-if="room.user._id === rooms.currentUser._id"
+           ng-click="rooms.deleteRoom( room )"></i>
+        <i class="fa"
+           ng-if="room.user._id === rooms.currentUser._id"
+           ng-class="{ 'fa-times': room.isEditMode, 'fa-pencil': !room.isEditMode }"
+           ng-click="rooms.switchEditMode( room )"></i>
+    </li>
+</ul>
+<div class="rooms-input">
+    <form ng-submit="rooms.addRoom( rooms.newRoom )">
+        <input type="text" name="room" ng-model="rooms.newRoom" autocomplete="off" placeholder="Create room...">
+        <div>{{ rooms.errors.empty }}</div>
+    </form>
+</div>

@@ -1,5 +1,6 @@
-function UsersListController() {
-    this.list = [];
+function UsersListController( userService ) {
+    this.list = userService.users;
+    this.currentUser = userService.currentUser;
 }
 
-module.exports = UsersListController;
+module.exports = [ 'userService', UsersListController ];

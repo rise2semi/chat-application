@@ -1,5 +1,8 @@
-<div class="users-container">
-    <ul class="users-list">
-        <li class="user-name" ng-repeat="user in users.list track by $index">{{ ::user }}</li>
-    </ul>
-</div>
+<h2>Users</h2>
+<ul class="users-list">
+    <li class="user-name"
+        ng-repeat="user in users.list track by $index"
+        ng-class="{ 'current': user._id === users.currentUser._id }">
+        {{ ( user._id === users.currentUser._id ) ? user.name + ' (you)' : user.name }}
+    </li>
+</ul>

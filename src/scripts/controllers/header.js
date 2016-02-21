@@ -8,4 +8,4 @@ HeaderController.prototype.logout = function () {
     this.$state.go('login');
 };
 
-module.exports = ['authService', '$state', HeaderController ];
+module.exports = [ 'authService', '$state', HeaderController ];

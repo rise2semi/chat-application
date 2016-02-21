@@ -1,6 +1,5 @@
-function ChatController( chatURL, roomService ) {
+function ChatController( roomService ) {
     this.roomService = roomService;
-    console.log( chatURL );
 }
 
-module.exports = ['chatURL', 'roomService', ChatController];
+module.exports = [ 'roomService', ChatController];

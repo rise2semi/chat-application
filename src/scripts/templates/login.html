@@ -1,7 +1,9 @@
 <div class="login">
     <form class="login-form" name="loginForm" ng-submit="login.submitForm( login.username )">
-        <label for="username">Give me your name:</label>
+        <label for="username">Choose username</label>
         <input type="text" id="username" name="username" ng-model="login.username">
+        <div ng-if="login.errors.empty" class="error">{{ login.errors.empty }}</div>
+        <div ng-if="login.errors.logged" class="error">{{ login.errors.logged }}</div>
         <button>Login</button>
     </form>
 </div>

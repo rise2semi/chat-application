@@ -8,6 +8,9 @@ var authConfig = require('./config/auth.config');
 var AuthService = require('./services/auth');
 var RoomService = require('./services/room');
 var SocketService = require('./services/socket');
+var LoginService = require('./services/login');
+var UserService = require('./services/user');
+var MessageService = require('./services/message');
 var templates = require('./templates/templates');
 
 /**
@@ -21,6 +24,9 @@ var app = angular.module('app', [ angularRouter, 'templates' ])
     .constant('_', _ )
     .service('authService', AuthService )
     .service('socketService', SocketService )
-    .service('roomService', RoomService );
+    .service('roomService', RoomService )
+    .service('loginService', LoginService )
+    .service('userService', UserService )
+    .service('messageService', MessageService );
 
 module.exports = app;

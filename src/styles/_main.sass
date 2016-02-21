@@ -1,8 +1,37 @@
 html
   font-size: 10px
+  font-family: Verdana, sans-serif
+  height: 100%
 
 body
   margin: 0
-
-html, body, .app-container
   height: 100%
+
+*
+  box-sizing: border-box
+  
+h1, h2, h3, h4, h5
+  margin: 0
+
+.app-container
+  display: table
+  height: 100%
+  width: 100%
+
+main
+  display: table-row
+
+.chat-container
+  height: 100%
+
+button
+  padding: 5px 10px
+  font-size: 1.6rem
+  border: 1px solid $overlay-color
+  border-radius: 3px
+  background-color: white
+
+.error
+  font-size: 1.4rem
+  color: $color-error
+  padding: 10px 0

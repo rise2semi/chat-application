@@ -12,7 +12,13 @@ module.exports = ['$urlRouterProvider', '$stateProvider', function ( $urlRouterP
         .state('chat', {
             url: '/chat/:name',
             resolve: {
-                chatURL: ['$stateParams', function ( $stateParams ) {
+                roomURL: ['$stateParams', 'roomService', function ( $stateParams, roomService ) {
+                    var currentRoom = ( $stateParams.name )
+                        ? roomService.getRoom( $stateParams.name )
+                        : roomService.getDefault();
+
+                    roomService.setCurrentRoom( currentRoom );
+
                     return $stateParams.name;
                 }]
             },
