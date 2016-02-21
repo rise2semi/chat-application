@@ -20,7 +20,7 @@ var config = {
         templates: './src/scripts/**/*.html',
         styles:    './src/styles/*.sass',
         scripts:   './src/scripts/**/*.js',
-        fonts:     './node_modules/bootstrap-sass/assets/fonts/**/*',
+        fonts:     './src/assets/fonts/*',
         images:    './src/assets/images/**/*'
 
     },
@@ -81,7 +81,7 @@ gulp.task('browserSync', function () {
     return browserSync({
         server: config.dest.root,
         files: config.src.root,
-        ghostMode: { clicks: true, forms: true, scroll: false },
+        ghostMode: { clicks: false, forms: false, scroll: false },
         open: false
     });
 });
