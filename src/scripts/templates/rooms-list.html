@@ -21,7 +21,8 @@
 </ul>
 <div class="rooms-input">
     <form ng-submit="rooms.addRoom( rooms.newRoom )">
+        <div ng-if="rooms.errors.exist" class="error">{{ rooms.errors.exist }}</div>
+        <div ng-if="rooms.errors.create" class="error">{{ rooms.errors.create }}</div>
         <input type="text" name="room" ng-model="rooms.newRoom" autocomplete="off" placeholder="Create room...">
-        <div>{{ rooms.errors.empty }}</div>
     </form>
 </div>

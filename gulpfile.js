@@ -21,7 +21,8 @@ var config = {
         styles:    './src/styles/*.sass',
         scripts:   './src/scripts/**/*.js',
         fonts:     './src/assets/fonts/*',
-        images:    './src/assets/images/**/*'
+        sounds:    './src/assets/sounds/*',
+        images:    './src/assets/images/*'
 
     },
     dest: {
@@ -57,6 +58,16 @@ gulp.task('fonts', function() {
         .pipe( gulp.dest( config.dest.assets + '/fonts') );
 });
 
+gulp.task('sounds', function() {
+    return gulp.src( config.src.sounds )
+        .pipe( gulp.dest( config.dest.assets + '/sounds') );
+});
+
+gulp.task('images', function() {
+    return gulp.src( config.src.images )
+        .pipe( gulp.dest( config.dest.assets + '/images') );
+});
+
 gulp.task('sass', function () {
     return gulp.src( config.src.styles )
         .pipe( sass().on('error', sass.logError ) )
@@ -69,7 +80,7 @@ gulp.task('scripts', function () {
         .pipe( fs.createWriteStream( config.dest.root + '/app.js') );
 });
 
-gulp.task('build', gulpSequence('clean', 'fonts', 'index', 'templates', 'sass', 'scripts'));
+gulp.task('build', gulpSequence('clean', 'fonts', 'sounds', 'images', 'index', 'templates', 'sass', 'scripts'));
 
 gulp.task('unit', function ( done ) {
     new karma.Server({

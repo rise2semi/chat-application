@@ -1,13 +1,15 @@
-function RoomService( _, socketService, userService, messageService, $state ) {
+function RoomService( _, socketService, userService, messageService, $state, $rootScope ) {
     this._ = _;
     this.localStorage = localStorage;
     this.socketService = socketService;
     this.userService = userService;
     this.messageService = messageService;
     this.$state = $state;
+    this.$rootScope = $rootScope;
 
     this.rooms = [];
     this.currentRoom = null;
+    this.reconnectRoom = null;
 
     this.socketService.on('room created', this.onRoomCreated.bind( this ) );
     this.socketService.on('room updated', this.onRoomUpdated.bind( this ) );
@@ -16,7 +18,8 @@ function RoomService( _, socketService, userService, messageService, $state ) {
 }
 
 RoomService.prototype.storeRooms = function ( rooms ) {
-    this.rooms.push.apply( this.rooms, rooms );
+    var uniqueRooms = this._.differenceBy( rooms, this.rooms, '_id' );
+    this.rooms.push.apply( this.rooms, uniqueRooms );
 };
 
 RoomService.prototype.setCurrentRoom = function ( room ) {
@@ -58,6 +61,7 @@ RoomService.prototype.onRoomUpdated = function ( room ) {
     console.log('Room updated', room );
     var roomIndex = this._.findIndex( this.rooms, { '_id': room._id });
     this.rooms[ roomIndex ] = room;
+    this.$rootScope.$emit('room-edited');
 };
 
 RoomService.prototype.onRoomRemoved = function ( room ) {
@@ -68,6 +72,11 @@ RoomService.prototype.onRoomRemoved = function ( room ) {
 RoomService.prototype.onRoomSwitched = function ( eventData ) {
     console.log('Room switched', eventData );
 
+    if ( this.reconnectRoom ) {
+        this.changeRoom( this.reconnectRoom );
+        return this.reconnectRoom = null;
+    }
+
     this.currentRoom = eventData.room;
     this.userService.storeUsers( eventData.users );
     this.messageService.storeMessages( eventData.messages );
@@ -75,4 +84,4 @@ RoomService.prototype.onRoomSwitched = function ( eventData ) {
     this.$state.go('chat', { name: this.getLink( this.currentRoom ) }, { reload: true });
 };
 
-module.exports = [ '_', 'socketService', 'userService', 'messageService', '$state', RoomService ];
+module.exports = [ '_', 'socketService', 'userService', 'messageService', '$state', '$rootScope', RoomService ];

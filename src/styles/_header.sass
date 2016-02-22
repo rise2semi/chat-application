@@ -1,12 +1,22 @@
 header
-  display: table-row
+  display: table
   height: 50px
   width: 100%
   background-color: $background-color
+  border-bottom: 2px solid #ffffff
+
+  .fa
+    display: none
+
+    @media (max-width: $small-screen)
+      display: inline-block
+      font-size: 1.6rem
+      padding: 10px
 
 .sidebar-icon
   display: table-cell
   vertical-align: middle
+  min-width: 150px
 
 .logo-container
   display: table-cell
@@ -35,11 +45,4 @@ header
   vertical-align: middle
   padding-right: 20px
   text-align: right
-
-.fa
-  display: none
-
-  @media (max-width: $small-screen)
-    display: inline-block
-    font-size: 1.6rem
-    padding: 10px
+  min-width: 150px

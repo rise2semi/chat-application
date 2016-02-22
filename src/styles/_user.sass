@@ -1,13 +1,23 @@
 .users-container
-  display: table-cell
+  position: absolute
+  right: 0
+  bottom: 0
+  top: 50px
   min-width: 200px
-  height: 100%
+  z-index: 1
   background: $background-color-light
+  border-left: 2px solid #ffffff
 
   h2
     text-align: center
-    padding: 5px 0
-    @include background-gradient()
+    padding: 15px 0 5px 0
+
+  @media (max-width: $small-screen)
+    right: -200px
+
+  &.open
+    @media (max-width: $small-screen)
+      right: 0
 
 .users-list
   list-style-type: none

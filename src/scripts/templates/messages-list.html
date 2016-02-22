@@ -1,18 +1,22 @@
-<div class="messages-list">
-    <div ng-repeat="message in messages.list track by $index" class="message-box">
-        <div class="message-user">{{ message.user.name }}</div>
-        <div class="message-content"
-             ng-class="{ 'message-outside': message.user._id === messages.currentUser._id,
-                         'message-inside': message.user._id !== messages.currentUser._id }">
-            {{ ::message.content }}
+<div class="messages-content-wrapper">
+    <div class="messages-content">
+        <div class="messages-list">
+            <div ng-repeat="message in messages.list track by $index" class="message-box">
+                <div class="message-user">{{ message.user.name }}</div>
+                <div class="message-content"
+                     ng-class="{ 'message-outside': message.user._id === messages.currentUser._id,
+                             'message-inside': message.user._id !== messages.currentUser._id }">
+                    {{ ::message.content }}
+                </div>
+                <div class="message-date">{{ message.created | date: 'HH:mm' }}</div>
+            </div>
         </div>
-        <div class="message-date">{{ message.created | date: 'HH:mm' }}</div>
+        <div class="message-input">
+            <form ng-submit="messages.addMessage( messages.newMessage )">
+                <div class="message-input-user">{{ messages.currentUser.name }}</div>
+                <input type="text" name="message" ng-model="messages.newMessage" autocomplete="off" placeholder="Send message...">
+                <i class="fa fa-commenting" ng-click="messages.addMessage( messages.newMessage )"></i>
+            </form>
+        </div>
     </div>
-</div>
-<div class="message-input">
-    <form ng-submit="messages.addMessage( messages.newMessage )">
-        <div class="message-input-user">{{ messages.currentUser.name }}</div>
-        <input type="text" name="message" ng-model="messages.newMessage" autocomplete="off" placeholder="Send message...">
-        <i class="fa fa-commenting" ng-click="messages.addMessage( messages.newMessage )"></i>
-    </form>
 </div>

@@ -12,30 +12,42 @@ function RoomsListController( roomService, _ , userService, $rootScope ) {
     this.changeRoom = this.roomService.changeRoom.bind( this.roomService );
 
     this.errors = {
-        empty: '',
-        edit: ''
+        edit: '',
+        exist: '',
+        create: ''
     };
 
+    $rootScope.$on('room-edited', function () {
+        this.editedRoom = null;
+    }.bind( this ));
+
     $rootScope.$on('error', function ( event, errorData ) {
-        if ( errorData.code === 20 ) {
-            this.errors.empty = errorData.message;
+        switch ( errorData.code ) {
+            case 20:
+                return this.errors.create = errorData.message;
+            case 21:
+                return this.errors.exist = errorData.message;
+            case 25:
+                return this.errors.edit = errorData.message;
         }
-
-        if ( errorData.code === 25 ) {
-            this.errors.edit = errorData.message;
-        }
-
     }.bind( this ));
 }
 
 RoomsListController.prototype.addRoom = function ( room ) {
     this.roomService.addRoom( room );
+    this.clearErrors();
     this.newRoom = '';
+};
+
+RoomsListController.prototype.clearErrors = function () {
+    this.errors.exist = '';
+    this.errors.edit = '';
+    this.errors.create = '';
 };
 
 RoomsListController.prototype.switchEditMode = function ( room ) {
     var currentModeIsEdit = room.isEditMode;
-    this.errors.edit = '';
+    this.clearErrors();
 
     this._.each( this.list, function ( listRoom ) {
         listRoom.isEditMode = false;
@@ -48,11 +60,7 @@ RoomsListController.prototype.switchEditMode = function ( room ) {
 };
 
 RoomsListController.prototype.editRoom = function ( room ) {
-    //var originRoom = this._.find( this.list, { _id: room._id });
-
-    this.roomService.editRoom( room, false );
-    //this.editedRoom = null;
-    //originRoom.isEditMode = false;
+    this.roomService.editRoom(room, false);
 };
 
 RoomsListController.prototype.deleteRoom = function ( room ) {

@@ -1,6 +1,10 @@
 <header ui-view="header"></header>
 <main>
-    <div ui-view="roomsList" class="rooms-container"></div>
+    <div ui-view="roomsList" class="rooms-container" ng-class="{ open: chat.roomsOpen }"></div>
+    <div ui-view="usersList" class="users-container" ng-class="{ open: chat.usersOpen }"></div>
     <div ui-view="messagesList" class="messages-container"></div>
-    <div ui-view="usersList" class="users-container"></div>
 </main>
+<div ng-if="chat.connectionStatus.isLost" class="reconnect-overlay">
+    <span class="reconnect-message">You lost connection! We are trying to reconnect!</span>
+    <img class="loader" src="assets/images/loader.gif" alt="Waiting for reconnect">
+</div>

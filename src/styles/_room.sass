@@ -1,21 +1,24 @@
 .rooms-container
-  display: table-cell
-  position: relative
+  position: absolute
+  left: 0
+  bottom: 0
+  top: 50px
   min-width: 200px
-  height: 100%
+  z-index: 1
   background: $background-color-light
+  border-right: 2px solid #ffffff
+
 
   h2
     text-align: center
-    padding: 5px 0
-    @include background-gradient()
+    padding: 15px 0 5px 0
 
-  @media (max-width: 767px)
-    width: 0
+  @media (max-width: $small-screen)
+    left: -200px
 
   &.open
-    @media (max-width: 767px)
-      width: 200px
+    @media (max-width: $small-screen)
+      left: 0
 
 .rooms-list
   list-style-type: none

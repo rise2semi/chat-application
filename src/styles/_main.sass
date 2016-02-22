@@ -6,6 +6,7 @@ html
 body
   margin: 0
   height: 100%
+  overflow: hidden
 
 *
   box-sizing: border-box
@@ -13,15 +14,7 @@ body
 h1, h2, h3, h4, h5
   margin: 0
 
-.app-container
-  display: table
-  height: 100%
-  width: 100%
-
-main
-  display: table-row
-
-.chat-container
+.app-container, main, .chat-container
   height: 100%
 
 button
@@ -30,8 +23,35 @@ button
   border: 1px solid $overlay-color
   border-radius: 3px
   background-color: white
+  cursor: pointer
+
+  &:hover
+    background-color: $overlay-color
 
 .error
   font-size: 1.4rem
   color: $color-error
   padding: 10px 0
+
+.reconnect-overlay
+  position: absolute
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  background: $overlay-color
+  text-align: center
+  font-size: 2rem
+
+  &:before
+    display: inline-block
+    height: 100%
+    vertical-align: middle
+    content: ''
+
+  .content
+    vertical-align: middle
+  .loader
+    vertical-align: middle
+.fa:hover
+  opacity: 0.6
